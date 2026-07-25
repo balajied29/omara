@@ -56,12 +56,14 @@ export default function LocationPage() {
           <p className="small">
             Omara, Hotel Palacio
             <br />
-            [Street address]
+            4th floor, Paltan Bazaar
             <br />
-            [City, PIN]
+            HP Brahmachari Road
+            <br />
+            Guwahati 781008, Assam
           </p>
           <p className="small muted">
-            <a href="tel:+910000000000">[+91 00000 00000]</a>
+            <a href="tel:+919127000120">+91 91270 00120</a>
             <br />
             <a href="mailto:reservations@omara.example">[reservations@…]</a>
           </p>
@@ -70,7 +72,7 @@ export default function LocationPage() {
 
       <a
         className="map-panel"
-        href="https://www.google.com/maps/search/Hotel+Palacio"
+        href="https://www.google.com/maps/search/?api=1&query=Hotel+Palacio%2C+Paltan+Bazaar%2C+HP+Brahmachari+Road%2C+Guwahati+781008"
         target="_blank"
         rel="noreferrer"
       >

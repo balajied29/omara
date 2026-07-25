@@ -8,8 +8,9 @@ export default function Footer() {
           <h4>Visit us</h4>
           <ul>
             <li>Omara, Hotel Palacio</li>
-            <li>[Street address]</li>
-            <li>[City, PIN]</li>
+            <li>4th floor, Paltan Bazaar</li>
+            <li>HP Brahmachari Road</li>
+            <li>Guwahati 781008</li>
           </ul>
         </div>
         <div>
@@ -24,7 +25,7 @@ export default function Footer() {
           <h4>Contact</h4>
           <ul>
             <li>
-              <a href="tel:+910000000000">[+91 00000 00000]</a>
+              <a href="tel:+919127000120">+91 91270 00120</a>
             </li>
             <li>
               <a href="mailto:reservations@omara.example">[reservations@…]</a>

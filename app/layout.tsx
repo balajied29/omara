@@ -24,7 +24,25 @@ const marcellus = Marcellus({
 export const metadata: Metadata = {
   title: "Omara — Modern Indian Dining at Hotel Palacio",
   description:
-    "Omara is a modern Indian dining room at Hotel Palacio, created in collaboration with Chef Vicky Ratnani. Fire, craft and memory on every plate.",
+    "Omara is a modern Indian dining room on the 4th floor of Hotel Palacio, Guwahati, created in collaboration with Chef Vicky Ratnani. Fire, craft and memory on every plate.",
+};
+
+/** Name/address/phone in machine-readable form — this is what search
+    engines and maps read for local listings. */
+const RESTAURANT_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: "Omara",
+  servesCuisine: "Modern Indian",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "4th floor, Hotel Palacio, HP Brahmachari Road, Paltan Bazaar",
+    addressLocality: "Guwahati",
+    addressRegion: "Assam",
+    postalCode: "781008",
+    addressCountry: "IN",
+  },
+  telephone: "+91-91270-00120",
 };
 
 export default function RootLayout({
@@ -38,6 +56,12 @@ export default function RootLayout({
       className={`${jost.variable} ${inter.variable} ${marcellus.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(RESTAURANT_SCHEMA),
+          }}
+        />
         <SmoothScroll />
         {children}
       </body>
