@@ -185,13 +185,16 @@ ul {
 
 .header__brand {
   justify-self: center;
-  font-family: var(--font-serif), serif;
-  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  text-indent: 0.22em;
+  display: block;
+  line-height: 0;
   z-index: 60;
+}
+
+.header__brand svg {
+  display: block;
+  height: clamp(15px, 1.45vw, 19px);
+  width: auto;
+  aspect-ratio: 2592 / 568.92;
 }
 
 .header__toggle {
@@ -733,15 +736,16 @@ ul {
 .footer__wordmark {
   display: block;
   width: 100%;
-  height: auto;
   padding-bottom: clamp(16px, 2vw, 32px);
+  overflow: hidden;
+  line-height: 0;
 }
 
-.footer__wordmark text {
-  font-family: var(--font-display), sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.16em;
-  fill: var(--ink);
+.footer__wordmark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--ink);
 }
 
 @media (max-width: 860px) {
@@ -1271,10 +1275,8 @@ body {
     letter-spacing: 0.1em;
   }
 
-  .header__brand {
-    font-size: 1.15rem;
-    letter-spacing: 0.18em;
-    text-indent: 0.18em;
+  .header__brand svg {
+    height: 15px;
   }
 
   .header__toggle {
@@ -1386,8 +1388,8 @@ body {
     font-size: 0.58rem;
   }
 
-  .header__brand {
-    font-size: 1rem;
+  .header__brand svg {
+    height: 13px;
   }
 
   .slider-card {

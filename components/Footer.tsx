@@ -1,3 +1,5 @@
+import Logo from "@/components/Logo";
+
 export default function Footer() {
   return (
     <footer className="footer" id="visit">
@@ -44,16 +46,9 @@ export default function Footer() {
         <p>© 2026 Omara at Hotel Palacio. All rights reserved.</p>
         <p>In collaboration with Chef Vicky Ratnani</p>
       </div>
-      <svg
-        className="footer__wordmark"
-        viewBox="0 0 1000 190"
-        role="img"
-        aria-label="Omara"
-      >
-        <text x="500" y="158" textAnchor="middle" fontSize="185">
-          OMARA
-        </text>
-      </svg>
+      <div className="footer__wordmark">
+        <Logo uid="footer" />
+      </div>
     </footer>
   );
 }

@@ -106,7 +106,7 @@ export default function PageEffects() {
           );
         });
 
-      gsap.from(".footer__wordmark text", {
+      gsap.from(".footer__wordmark svg", {
         yPercent: 105,
         duration: 1.2,
         ease: "power3.out",

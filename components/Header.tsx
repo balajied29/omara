@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Logo from "@/components/Logo";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -46,8 +47,8 @@ export default function Header() {
         <a href="/location#reserve" className="header__book">
           Book now
         </a>
-        <a href="/" className="header__brand">
-          Omara
+        <a href="/" className="header__brand" aria-label="Omara — home">
+          <Logo uid="header" />
         </a>
         <button
           className={`header__toggle ${open ? "is-open" : ""}`}
