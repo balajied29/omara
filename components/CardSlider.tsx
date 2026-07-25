@@ -8,31 +8,31 @@ const CARDS = [
     title: "Events",
     note: "Ways to gather, from long lunches to late evenings",
     src: "/images/table-light.jpg",
-    href: "#visit",
+    href: "/location#reserve",
   },
   {
     title: "Gallery",
     note: "Where atmosphere is built through wood and lamplight",
     src: "/images/lamp-door.jpg",
-    href: "#gallery",
+    href: "/gallery",
   },
   {
     title: "Menu",
     note: "A warmth that moves through the plate",
     src: "/images/chef-cooking.jpg",
-    href: "#menu",
+    href: "/menu",
   },
   {
     title: "Chef's table",
     note: "A seat at the pass, meant to be shared",
     src: "/images/chef-grill.jpg",
-    href: "#chef",
+    href: "/about#chef",
   },
   {
     title: "Private dining",
     note: "The long table, yours for the evening",
     src: "/images/room-desk.jpg",
-    href: "#visit",
+    href: "/location#reserve",
   },
 ];
 

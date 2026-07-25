@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import CardSlider from "@/components/CardSlider";
 
@@ -47,7 +48,7 @@ export default function Home() {
             Guided by season, smoke and craft. A modern Indian kitchen rooted
             in memory, led by warmth, and made to be shared.
           </p>
-          <a href="#menu" className="arrow-link">
+          <a href="/about" className="arrow-link">
             Explore more <span className="arrow-link__icon" />
           </a>
         </Reveal>
@@ -74,7 +75,7 @@ export default function Home() {
               across generations and reworked with a modern hand. Familiar at
               first taste, new at the second.
             </p>
-            <a href="#visit" className="arrow-link">
+            <a href="/menu" className="arrow-link">
               View full menu <span className="arrow-link__icon" />
             </a>
           </Reveal>
@@ -104,7 +105,7 @@ export default function Home() {
               Around the table, Omara comes to life. Good company, shared
               plates, and moments that linger.
             </p>
-            <a href="#chef" className="arrow-link arrow-link--ink">
+            <a href="/gallery" className="arrow-link arrow-link--ink">
               Explore gallery <span className="arrow-link__icon" />
             </a>
           </Reveal>
@@ -137,7 +138,7 @@ export default function Home() {
             by hand, warmed by lamplight, built for evenings that move at
             their own pace.
           </p>
-          <a href="#visit" className="arrow-link">
+          <a href="/about" className="arrow-link">
             Meet the kitchen <span className="arrow-link__icon" />
           </a>
         </Reveal>
@@ -158,79 +159,13 @@ export default function Home() {
           <h2 className="title-m">
             Clay, smoke and memory — served warm. Join us for the evening
           </h2>
-          <a href="#visit" className="arrow-link arrow-link--light">
+          <a href="/location#reserve" className="arrow-link arrow-link--light">
             Reserve a table <span className="arrow-link__icon" />
           </a>
         </Reveal>
       </section>
 
-      {/* Footer */}
-      <footer className="footer" id="visit">
-        <div className="footer__grid">
-          <div>
-            <h4>Visit us</h4>
-            <ul>
-              <li>Omara, Hotel Palacio</li>
-              <li>[Street address]</li>
-              <li>[City, PIN]</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Hours</h4>
-            <ul>
-              <li>Lunch — 12:00 to 15:30</li>
-              <li>Dinner — 19:00 to 23:00</li>
-              <li>Open all week</li>
-            </ul>
-          </div>
-          <div>
-            <h4>Contact</h4>
-            <ul>
-              <li>
-                <a href="tel:+910000000000">[+91 00000 00000]</a>
-              </li>
-              <li>
-                <a href="mailto:reservations@omara.example">
-                  [reservations@…]
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Follow</h4>
-            <ul>
-              <li>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Instagram
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="footer__base">
-          <p>© 2026 Omara at Hotel Palacio. All rights reserved.</p>
-          <p>In collaboration with Chef Vicky Ratnani</p>
-        </div>
-        <svg
-          className="footer__wordmark"
-          viewBox="0 0 1000 190"
-          role="img"
-          aria-label="Omara"
-        >
-          <text
-            x="500"
-            y="158"
-            textAnchor="middle"
-            fontSize="185"
-          >
-            OMARA
-          </text>
-        </svg>
-      </footer>
+      <Footer />
     </main>
   );
 }

@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 
 const LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#menu", label: "Menu" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#chef", label: "Chef" },
-  { href: "#visit", label: "Visit" },
+  { href: "/", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/about", label: "About" },
+  { href: "/location", label: "Location" },
 ];
 
 export default function Header() {
@@ -24,10 +24,10 @@ export default function Header() {
   return (
     <>
       <header className={`header ${solid && !open ? "header--solid" : ""}`}>
-        <a href="#visit" className="header__book">
+        <a href="/location#reserve" className="header__book">
           Book now
         </a>
-        <a href="#top" className="header__brand">
+        <a href="/" className="header__brand">
           Omara
         </a>
         <button
