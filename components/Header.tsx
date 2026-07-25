@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -9,6 +10,24 @@ const LINKS = [
   { href: "/about", label: "About" },
   { href: "/location", label: "Location" },
 ];
+
+const listVariants = {
+  open: { transition: { staggerChildren: 0.07, delayChildren: 0.28 } },
+  closed: { transition: { staggerChildren: 0.04, staggerDirection: -1 } },
+};
+
+const itemVariants = {
+  open: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] as const },
+  },
+  closed: {
+    y: 34,
+    opacity: 0,
+    transition: { duration: 0.3, ease: "easeIn" as const },
+  },
+};
 
 export default function Header() {
   const [solid, setSolid] = useState(false);
@@ -41,15 +60,19 @@ export default function Header() {
       </header>
 
       <nav className={`nav-overlay ${open ? "is-open" : ""}`}>
-        <ul>
+        <motion.ul
+          initial="closed"
+          animate={open ? "open" : "closed"}
+          variants={listVariants}
+        >
           {LINKS.map((link) => (
-            <li key={link.href}>
+            <motion.li key={link.href} variants={itemVariants}>
               <a href={link.href} onClick={() => setOpen(false)}>
                 {link.label}
               </a>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </nav>
     </>
   );

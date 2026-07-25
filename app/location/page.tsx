@@ -24,6 +24,7 @@ export default function LocationPage() {
             fill
             priority
             sizes="100vw"
+            quality={60}
           />
         </div>
         <div className="page-hero__content">
@@ -78,6 +79,7 @@ export default function LocationPage() {
           alt=""
           fill
           sizes="100vw"
+            quality={60}
         />
         <span className="map-panel__label">
           <span className="eyebrow">Directions</span>

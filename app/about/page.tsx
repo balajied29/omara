@@ -23,6 +23,7 @@ export default function AboutPage() {
             fill
             priority
             sizes="100vw"
+            quality={60}
           />
         </div>
         <div className="page-hero__content">
@@ -87,7 +88,7 @@ export default function AboutPage() {
             Write to us <span className="arrow-link__icon" />
           </a>
         </Reveal>
-        <Reveal className="quote-block__figure" style={{ minHeight: "48svh" }}>
+        <Reveal className="contact__figure">
           <Image
             src="/images/serving-hands.jpg"
             alt="A shared plate served at the Omara table"

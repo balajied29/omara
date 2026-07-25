@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Inter, Marcellus } from "next/font/google";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const jost = Jost({
@@ -36,7 +37,10 @@ export default function RootLayout({
       lang="en"
       className={`${jost.variable} ${inter.variable} ${marcellus.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

@@ -155,6 +155,7 @@ export default function MenuPage() {
             fill
             priority
             sizes="100vw"
+            quality={60}
           />
         </div>
         <div className="page-hero__content">

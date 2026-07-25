@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 const CARDS = [
   {
@@ -39,6 +40,7 @@ const CARDS = [
 export default function CardSlider() {
   const track = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0.2);
+  const reduce = useReducedMotion();
 
   const onScroll = () => {
     const el = track.current;
@@ -58,8 +60,20 @@ export default function CardSlider() {
   return (
     <div className="slider">
       <div className="slider__track" ref={track} onScroll={onScroll}>
-        {CARDS.map((card) => (
-          <a key={card.title} href={card.href} className="slider-card">
+        {CARDS.map((card, i) => (
+          <motion.a
+            key={card.title}
+            href={card.href}
+            className="slider-card"
+            initial={reduce ? false : { opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 1,
+              ease: [0.16, 1, 0.3, 1],
+              delay: Math.min(i, 2) * 0.12,
+            }}
+          >
             <Image
               src={card.src}
               alt={card.title}
@@ -73,7 +87,7 @@ export default function CardSlider() {
                 Explore more <span className="arrow-link__icon" />
               </span>
             </div>
-          </a>
+          </motion.a>
         ))}
       </div>
       <div className="slider__controls">

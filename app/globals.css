@@ -16,8 +16,10 @@
   box-sizing: border-box;
 }
 
+/* No `scroll-behavior: smooth` here — it fights Lenis for control of the
+   scroll position. Lenis handles wheel smoothing; anchor jumps stay native. */
 html {
-  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -1111,7 +1113,9 @@ ul {
 @media (max-width: 860px) {
   .location-info,
   .contact {
-    grid-template-columns: 1fr;
+    /* minmax(0, 1fr) — a bare `1fr` floors at min-content, which an
+       aspect-ratio'd figure can push past the viewport width. */
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .form__row {
@@ -1182,5 +1186,244 @@ ul {
 
   .quote-block {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- lenis smooth scroll ---------- */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* =========================================================
+   Performance & mobile
+   ========================================================= */
+
+/* Parallaxed images get their own compositor layer so scrubbing never
+   triggers layout. Scoped tightly — a layer per image costs GPU memory. */
+@media (min-width: 861px) and (prefers-reduced-motion: no-preference) {
+  .hero__media img,
+  .page-hero__media img,
+  .feature__media img,
+  .interlude img,
+  .band__media img,
+  .quote-block__figure img,
+  .menu-split__figure img {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+}
+
+/* Hover-driven scale is meaningless on touch and forces needless repaints. */
+@media (hover: none) {
+  .text-image__figure:hover img,
+  .gallery__item:hover img,
+  .slider-card:hover img,
+  .masonry figure:hover img,
+  .map-panel:hover img {
+    transform: none;
+  }
+}
+
+/* Long image lists: skip rendering work for offscreen figures.
+   The placeholder size must constrain the BLOCK axis only — giving the
+   inline axis a length forces offscreen figures to that width and breaks
+   out of the column. `none` keeps natural width. */
+.masonry figure {
+  content-visibility: auto;
+  contain-intrinsic-size: none 460px;
+}
+
+/* Kill horizontal overflow on small screens. */
+body {
+  overflow-x: hidden;
+}
+
+/* ---------- mobile ---------- */
+
+@media (max-width: 860px) {
+  /* backdrop-filter on a fixed bar repaints the strip under it every
+     frame — far too expensive on a phone GPU. Solid fill instead. */
+  .header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(24, 18, 10, 0.86);
+    width: calc(100vw - 2 * var(--pad));
+    padding: 0.55rem 0.7rem;
+  }
+
+  .header__book {
+    padding: 0.95em 1.2em;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+  }
+
+  .header__brand {
+    font-size: 1.15rem;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+  }
+
+  .header__toggle {
+    width: 44px;
+  }
+
+  .header__toggle span {
+    width: 30px;
+  }
+
+  /* Full-viewport sections stack up fast on a phone; trim the tallest so
+     the page isn't an endless scroll of near-empty imagery. */
+  .feature {
+    min-height: 92svh;
+    gap: 3.5rem;
+  }
+
+  .menu-split {
+    min-height: 0;
+  }
+
+  .menu-split__figure {
+    aspect-ratio: 3 / 2;
+  }
+
+  .menu-split__panel {
+    min-height: 0;
+    padding-block: clamp(40px, 12vw, 64px);
+    gap: 2.5rem;
+  }
+
+  .interlude {
+    min-height: 52svh;
+  }
+
+  .band {
+    min-height: 78svh;
+  }
+
+  .quote-block__figure {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .page-hero {
+    min-height: 52svh;
+  }
+
+  .about__figure {
+    aspect-ratio: 4 / 3;
+    max-width: 380px;
+  }
+
+  /* Cards: one clear card per screen with the next peeking, so the swipe
+     is discoverable. */
+  .slider-card {
+    width: 78vw;
+    aspect-ratio: 3 / 4;
+    padding: 1.3rem 1.1rem;
+  }
+
+  .slider__track {
+    gap: 12px;
+  }
+
+  .retreat {
+    gap: 3rem;
+  }
+
+  /* 90px top + 90px bottom between every section reads as dead space on a
+     small screen — tighten the vertical rhythm. */
+  .retreat,
+  .about,
+  .menu-page,
+  .gallery-page,
+  .location-info,
+  .contact,
+  .about-story {
+    padding-block: 64px;
+  }
+
+  .footer {
+    padding-top: 64px;
+  }
+
+  .map-panel {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Touch targets */
+  .slider__btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .filters button {
+    padding: 0.85em 1.4em;
+  }
+
+  .footer__base {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .header__book {
+    padding: 0.9em 0.9em;
+    font-size: 0.58rem;
+  }
+
+  .header__brand {
+    font-size: 1rem;
+  }
+
+  .slider-card {
+    width: 84vw;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hours-list li {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+}
+
+/* Figure inside the contact block — its own class so the mobile override
+   isn't outranked by an inline style. */
+.contact__figure {
+  position: relative;
+  min-height: 48svh;
+  overflow: hidden;
+}
+
+.contact__figure img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 860px) {
+  .contact__figure {
+    min-height: 0;
+    aspect-ratio: 4 / 3;
   }
 }

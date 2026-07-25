@@ -18,6 +18,7 @@ export default function Home() {
             fill
             priority
             sizes="100vw"
+            quality={60}
           />
         </div>
         <div className="hero__content">
@@ -35,6 +36,7 @@ export default function Home() {
             alt="Sculpted rattan forms in the Omara dining room"
             fill
             sizes="100vw"
+            quality={60}
           />
         </div>
         <Reveal className="feature__head">
@@ -89,6 +91,7 @@ export default function Home() {
           alt="Hand-worn wooden bowls stacked in the Omara kitchen"
           fill
           sizes="100vw"
+            quality={60}
         />
       </section>
 
@@ -152,6 +155,7 @@ export default function Home() {
             alt="The Omara kitchen at work"
             fill
             sizes="100vw"
+            quality={60}
           />
         </div>
         <Reveal className="band__panel">
