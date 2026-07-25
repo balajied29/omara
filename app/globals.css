@@ -332,18 +332,24 @@ ul {
   flex-direction: column;
   justify-content: space-between;
   color: #fff;
-  padding: clamp(28px, 4vw, 64px) var(--pad);
+  /* Top padding clears the fixed header bar, which would otherwise sit on
+     top of the eyebrow when this section aligns with the viewport top. */
+  padding: clamp(104px, 9vw, 130px) var(--pad) clamp(28px, 4vw, 64px);
 }
 
 .feature__media::after {
   content: "";
   position: absolute;
   inset: 0;
+  /* Weighted for a bright interior shot — white copy sits top and bottom,
+     so both ends need enough scrim to stay legible. */
   background: linear-gradient(
     to bottom,
-    rgba(15, 12, 8, 0.45) 0%,
-    rgba(15, 12, 8, 0.08) 45%,
-    rgba(15, 12, 8, 0.45) 100%
+    rgba(15, 12, 8, 0.62) 0%,
+    rgba(15, 12, 8, 0.34) 26%,
+    rgba(15, 12, 8, 0.16) 50%,
+    rgba(15, 12, 8, 0.5) 78%,
+    rgba(15, 12, 8, 0.72) 100%
   );
 }
 

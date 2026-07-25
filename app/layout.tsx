@@ -43,6 +43,7 @@ const RESTAURANT_SCHEMA = {
     addressCountry: "IN",
   },
   telephone: "+91-91270-00120",
+  sameAs: ["https://www.instagram.com/omara.ghy/"],
 };
 
 export default function RootLayout({

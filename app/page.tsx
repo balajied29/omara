@@ -32,8 +32,8 @@ export default function Home() {
       <section className="feature" id="about">
         <div className="feature__media">
           <Image
-            src="/images/hero-rattan.jpg"
-            alt="Sculpted rattan forms in the Omara dining room"
+            src="/images/dining-room.jpg"
+            alt="A table set for dinner in the Omara dining room"
             fill
             sizes="100vw"
             quality={60}

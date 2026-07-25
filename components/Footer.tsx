@@ -36,8 +36,12 @@ export default function Footer() {
           <h4>Follow</h4>
           <ul>
             <li>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer">
-                Instagram
+              <a
+                href="https://www.instagram.com/omara.ghy/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @omara.ghy
               </a>
             </li>
           </ul>
