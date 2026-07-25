@@ -1,66 +1,236 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import Header from "@/components/Header";
+import Reveal from "@/components/Reveal";
+import CardSlider from "@/components/CardSlider";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main id="top">
+      <Header />
+
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero__media">
+          <Image
+            src="/images/chef-plating.jpg"
+            alt="Chef plating a dish in low evening light at Omara"
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+        <div className="hero__content">
+          <h1 className="hero__title title-xl">
+            Rooted in fire. Raised in warmth
+          </h1>
+        </div>
+      </section>
+
+      {/* Full-bleed feature with overlaid text */}
+      <section className="feature" id="about">
+        <div className="feature__media">
+          <Image
+            src="/images/hero-rattan.jpg"
+            alt="Sculpted rattan forms in the Omara dining room"
+            fill
+            sizes="100vw"
+          />
+        </div>
+        <Reveal className="feature__head">
+          <p className="eyebrow">Fire and memory</p>
+          <h2 className="feature__title title-l">
+            Omara, where the table brings us home
+          </h2>
+        </Reveal>
+        <Reveal className="feature__foot">
+          <p className="small">
+            Guided by season, smoke and craft. A modern Indian kitchen rooted
+            in memory, led by warmth, and made to be shared.
           </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+          <a href="#menu" className="arrow-link">
+            Explore more <span className="arrow-link__icon" />
           </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        </Reveal>
+      </section>
+
+      {/* Menu split: photo + terracotta panel */}
+      <section className="menu-split" id="menu">
+        <div className="menu-split__figure">
+          <Image
+            src="/images/dessert-pour.jpg"
+            alt="Warm chocolate poured over a plated dessert"
+            fill
+            sizes="(max-width: 860px) 100vw, 50vw"
+          />
         </div>
-      </main>
-    </div>
+        <div className="menu-split__panel">
+          <Reveal className="menu-split__head">
+            <p className="eyebrow">Menu</p>
+            <h2 className="title-l">Flavours that stay with you</h2>
+          </Reveal>
+          <Reveal className="menu-split__foot">
+            <p className="small">
+              Charcoal and tandoor, spices ground in-house, recipes carried
+              across generations and reworked with a modern hand. Familiar at
+              first taste, new at the second.
+            </p>
+            <a href="#visit" className="arrow-link">
+              View full menu <span className="arrow-link__icon" />
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Full-bleed interlude */}
+      <section className="interlude">
+        <Image
+          src="/images/band-bowls.jpg"
+          alt="Hand-worn wooden bowls stacked in the Omara kitchen"
+          fill
+          sizes="100vw"
+        />
+      </section>
+
+      {/* Retreat: big title + card slider */}
+      <section className="retreat" id="gallery">
+        <div className="retreat__head">
+          <p className="eyebrow">The space</p>
+          <Reveal className="retreat__body">
+            <h2 className="title-l">
+              Where the kitchen moves with the evening. Discover our room at
+              Hotel Palacio
+            </h2>
+            <p className="small muted">
+              Around the table, Omara comes to life. Good company, shared
+              plates, and moments that linger.
+            </p>
+            <a href="#chef" className="arrow-link arrow-link--ink">
+              Explore gallery <span className="arrow-link__icon" />
+            </a>
+          </Reveal>
+        </div>
+        <CardSlider />
+      </section>
+
+      {/* About */}
+      <section className="about" id="chef">
+        <p className="eyebrow">About</p>
+        <Reveal className="about__figure">
+          <Image
+            src="/images/chef-team.jpg"
+            alt="Chef Vicky Ratnani with the Omara kitchen brigade"
+            fill
+            sizes="(max-width: 860px) 100vw, 30vw"
+          />
+        </Reveal>
+        <Reveal className="about__body">
+          <h2 className="title-l">Hospitality that feels like home</h2>
+          <p className="small muted">
+            With decades spent cooking across oceans and continents, Chef
+            Vicky Ratnani brings a traveller&apos;s curiosity home to Indian
+            ingredients. At Omara, the kitchen works the line between
+            nostalgia and reinvention — every plate a quiet conversation
+            between the two.
+          </p>
+          <p className="small muted">
+            The room follows the same instinct: wood, clay and brass, shaped
+            by hand, warmed by lamplight, built for evenings that move at
+            their own pace.
+          </p>
+          <a href="#visit" className="arrow-link">
+            Meet the kitchen <span className="arrow-link__icon" />
+          </a>
+        </Reveal>
+      </section>
+
+      {/* Sage band over property image */}
+      <section className="band">
+        <div className="band__media">
+          <Image
+            src="/images/kitchen-pan.jpg"
+            alt="The Omara kitchen at work"
+            fill
+            sizes="100vw"
+          />
+        </div>
+        <Reveal className="band__panel">
+          <p className="eyebrow">Reservations</p>
+          <h2 className="title-m">
+            Clay, smoke and memory — served warm. Join us for the evening
+          </h2>
+          <a href="#visit" className="arrow-link arrow-link--light">
+            Reserve a table <span className="arrow-link__icon" />
+          </a>
+        </Reveal>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer" id="visit">
+        <div className="footer__grid">
+          <div>
+            <h4>Visit us</h4>
+            <ul>
+              <li>Omara, Hotel Palacio</li>
+              <li>[Street address]</li>
+              <li>[City, PIN]</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Hours</h4>
+            <ul>
+              <li>Lunch — 12:00 to 15:30</li>
+              <li>Dinner — 19:00 to 23:00</li>
+              <li>Open all week</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <a href="tel:+910000000000">[+91 00000 00000]</a>
+              </li>
+              <li>
+                <a href="mailto:reservations@omara.example">
+                  [reservations@…]
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <ul>
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer__base">
+          <p>© 2026 Omara at Hotel Palacio. All rights reserved.</p>
+          <p>In collaboration with Chef Vicky Ratnani</p>
+        </div>
+        <svg
+          className="footer__wordmark"
+          viewBox="0 0 1000 190"
+          role="img"
+          aria-label="Omara"
+        >
+          <text
+            x="500"
+            y="158"
+            textAnchor="middle"
+            fontSize="185"
+          >
+            OMARA
+          </text>
+        </svg>
+      </footer>
+    </main>
   );
 }
