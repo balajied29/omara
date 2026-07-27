@@ -739,6 +739,19 @@ ul {
   color: rgba(25, 22, 17, 0.55);
 }
 
+/* The build credit sits with the other fine print, not above it. */
+.footer__credit a {
+  color: rgba(25, 22, 17, 0.8);
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--line);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.footer__credit a:hover {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+}
+
 .footer__wordmark {
   display: block;
   width: 100%;
@@ -1557,5 +1570,89 @@ body {
   .hero-video--parallax .hero-video__layer {
     will-change: auto;
     transform: none;
+  }
+}
+
+/* ---------- first-visit loader ---------- */
+
+/* Hidden until the boot script opts in. A visitor without JS must never meet
+   a curtain that nothing is left to lift. */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  opacity: 0;
+  visibility: hidden;
+}
+
+html[data-loader="on"] {
+  overflow: hidden;
+}
+
+html[data-loader="on"] .loader {
+  opacity: 1;
+  visibility: visible;
+}
+
+html[data-loader="off"] .loader {
+  opacity: 0;
+  visibility: hidden;
+  /* Visibility waits out the fade so the curtain does not vanish mid-dissolve. */
+  transition: opacity 0.62s var(--ease), visibility 0s linear 0.62s;
+}
+
+/* The wordmark as a mask over a two-stop gradient twice its height: the
+   window starts on the faint half and slides onto the solid one, so the mark
+   fills from the baseline up rather than simply fading in. */
+.loader__mark {
+  display: block;
+  width: min(58vw, 340px);
+  aspect-ratio: 2592 / 568.92;
+  background-image: linear-gradient(
+    to top,
+    var(--ink) 50%,
+    rgba(25, 22, 17, 0.14) 50%
+  );
+  background-size: 100% 200%;
+  background-position: 0 0;
+  -webkit-mask: url("/omara-logo.svg") center / contain no-repeat;
+  mask: url("/omara-logo.svg") center / contain no-repeat;
+}
+
+html[data-loader="on"] .loader__mark {
+  animation: loader-fill 1.25s var(--ease) forwards;
+}
+
+/* Lifting the mark a few pixels as it goes reads as the page arriving,
+   rather than the loader merely disappearing. */
+html[data-loader="off"] .loader__mark {
+  background-position: 0 100%;
+  transform: translateY(-8px);
+  transition: transform 0.62s var(--ease);
+}
+
+@keyframes loader-fill {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-loader="on"] .loader__mark {
+    animation: none;
+    background-position: 0 100%;
+  }
+  html[data-loader="off"] .loader {
+    transition: opacity 0.2s linear, visibility 0s linear 0.2s;
+  }
+  html[data-loader="off"] .loader__mark {
+    transform: none;
+    transition: none;
   }
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Inter, Marcellus } from "next/font/google";
+import Loader from "@/components/Loader";
 import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
             __html: JSON.stringify(RESTAURANT_SCHEMA),
           }}
         />
+        <Loader />
         <SmoothScroll />
         {children}
       </body>

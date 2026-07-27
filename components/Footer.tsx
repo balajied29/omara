@@ -50,6 +50,12 @@ export default function Footer() {
       <div className="footer__base">
         <p>© 2026 Omara at Hotel Palacio. All rights reserved.</p>
         <p>In collaboration with Chef Vicky Ratnani</p>
+        <p className="footer__credit">
+          Designed and built by{" "}
+          <a href="https://onlybees.in" target="_blank" rel="noreferrer">
+            ONLYBEES
+          </a>
+        </p>
       </div>
       <div className="footer__wordmark">
         <Logo uid="footer" />
