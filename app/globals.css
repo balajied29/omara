@@ -1133,6 +1133,26 @@ ul {
   color: var(--ink);
 }
 
+.form button[disabled] {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* Failures must be readable, not just tinted — terracotta alone does not carry
+   enough contrast against cream to be the only signal. */
+.form__error {
+  font-size: 0.86rem;
+  color: #8f3a22;
+  border-left: 2px solid var(--terracotta);
+  padding-left: 0.9rem;
+}
+
+.form--sent {
+  gap: 0.8rem;
+  border-left: 2px solid var(--terracotta);
+  padding-left: 1.1rem;
+}
+
 @media (max-width: 860px) {
   .location-info,
   .contact {
