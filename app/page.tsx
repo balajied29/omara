@@ -145,13 +145,12 @@ export default function Home() {
 
       {/* Sage band over property image */}
       <section className="band">
-        <div className="band__media">
-          <Image
-            src="/images/kitchen-pan.jpg"
-            alt="The Omara kitchen at work"
-            fill
-            sizes="100vw"
-            quality={60}
+        <div className="band__media band__media--video">
+          {/* Far below the fold, so deferred like the feature section. */}
+          <HeroVideo
+            name="band"
+            alt="A saxophonist playing in the Omara room after dark"
+            defer
           />
         </div>
         <Reveal className="band__panel">
