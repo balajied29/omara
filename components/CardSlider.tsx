@@ -78,7 +78,7 @@ export default function CardSlider() {
               src={card.src}
               alt={card.title}
               fill
-              sizes="(max-width: 860px) 60vw, 22vw"
+              sizes="(max-width: 860px) 85vw, 33vw"
             />
             <span className="slider-card__title">{card.title}</span>
             <div className="slider-card__bottom">

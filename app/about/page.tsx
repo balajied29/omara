@@ -18,12 +18,12 @@ export default function AboutPage() {
       <section className="page-hero">
         <div className="page-hero__media">
           <Image
-            src="/images/brigade.jpg"
+            src="/images/about-hero.jpg"
             alt="The Omara kitchen brigade at service"
             fill
             priority
             sizes="100vw"
-            quality={60}
+            quality={75}
           />
         </div>
         <div className="page-hero__content">
@@ -57,7 +57,7 @@ export default function AboutPage() {
             src="/images/chef-team.jpg"
             alt="Chef Vicky Ratnani with the Omara team"
             fill
-            sizes="(max-width: 860px) 100vw, 50vw"
+            sizes="(max-width: 860px) 100vw, 55vw"
           />
         </Reveal>
         <div className="quote-block__body">
@@ -93,7 +93,7 @@ export default function AboutPage() {
             src="/images/serving-hands.jpg"
             alt="A shared plate served at the Omara table"
             fill
-            sizes="(max-width: 860px) 100vw, 50vw"
+            sizes="(max-width: 860px) 100vw, 55vw"
           />
         </Reveal>
       </section>

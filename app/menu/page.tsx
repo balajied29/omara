@@ -150,12 +150,12 @@ export default function MenuPage() {
       <section className="page-hero">
         <div className="page-hero__media">
           <Image
-            src="/images/dessert-pour.jpg"
+            src="/images/menu-hero.jpg"
             alt="Warm chocolate poured over a plated dessert at Omara"
             fill
             priority
             sizes="100vw"
-            quality={60}
+            quality={75}
           />
         </div>
         <div className="page-hero__content">

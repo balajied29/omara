@@ -59,7 +59,7 @@ export default function Home() {
             src="/images/dessert-pour.jpg"
             alt="Warm chocolate poured over a plated dessert"
             fill
-            sizes="(max-width: 860px) 100vw, 50vw"
+            sizes="(max-width: 860px) 100vw, 55vw"
           />
         </div>
         <div className="menu-split__panel">
@@ -86,7 +86,7 @@ export default function Home() {
           src="/images/band-bowls.jpg"
           alt="Hand-worn wooden bowls stacked in the Omara kitchen"
           fill
-          sizes="100vw"
+          sizes="110vw"
             quality={60}
         />
       </section>

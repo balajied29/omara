@@ -18,12 +18,12 @@ export default function GalleryPage() {
       <section className="page-hero">
         <div className="page-hero__media">
           <Image
-            src="/images/dining-chairs.jpg"
+            src="/images/gallery-hero.jpg"
             alt="The Omara dining room set for the evening"
             fill
             priority
             sizes="100vw"
-            quality={60}
+            quality={75}
           />
         </div>
         <div className="page-hero__content">

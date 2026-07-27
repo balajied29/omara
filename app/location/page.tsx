@@ -24,7 +24,7 @@ export default function LocationPage() {
             fill
             priority
             sizes="100vw"
-            quality={60}
+            quality={75}
           />
         </div>
         <div className="page-hero__content">
@@ -77,11 +77,11 @@ export default function LocationPage() {
         rel="noreferrer"
       >
         <Image
-          src="/images/doorway.jpg"
+          src="/images/location-band.jpg"
           alt=""
           fill
           sizes="100vw"
-            quality={60}
+            quality={75}
         />
         <span className="map-panel__label">
           <span className="eyebrow">Directions</span>
