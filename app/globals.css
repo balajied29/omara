@@ -1435,3 +1435,82 @@ body {
     aspect-ratio: 4 / 3;
   }
 }
+
+/* ---------- hero video ---------- */
+
+.hero__media--video {
+  background: var(--ink);
+}
+
+/* Poster and video occupy the same box; the poster fades once the first frame
+   is actually playing, so a failed autoplay simply leaves the still in place. */
+.hero-video__poster,
+.hero-video__el {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-video__poster {
+  z-index: 1;
+  background-image: url("/images/hero-video-wide.jpg");
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.8s var(--ease);
+}
+
+/* Portrait crop for portrait viewports. Only the matching rule downloads. */
+@media (max-width: 860px) {
+  .hero-video__poster {
+    background-image: url("/images/hero-video-tall.jpg");
+  }
+}
+
+.hero-video__poster.is-hidden {
+  opacity: 0;
+}
+
+.hero-video__el {
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+
+.hero-video__el.is-ready {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video__poster,
+  .hero-video__el {
+    transition: none;
+  }
+}
+
+/* The footage is far brighter than the still it replaced — a flat 34% scrim
+   left the white headline fighting the marble. Weight it toward the copy. */
+.hero__media--video::after {
+  background:
+    linear-gradient(
+      to right,
+      rgba(15, 12, 8, 0.68) 0%,
+      rgba(15, 12, 8, 0.5) 42%,
+      rgba(15, 12, 8, 0.26) 100%
+    ),
+    linear-gradient(to bottom, rgba(15, 12, 8, 0.4) 0%, transparent 26%);
+}
+
+@media (max-width: 860px) {
+  .hero__media--video::after {
+    background:
+      linear-gradient(
+        to top,
+        rgba(15, 12, 8, 0.6) 0%,
+        rgba(15, 12, 8, 0.62) 38%,
+        rgba(15, 12, 8, 0.34) 72%,
+        rgba(15, 12, 8, 0.5) 100%
+      );
+  }
+}

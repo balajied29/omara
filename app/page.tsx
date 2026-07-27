@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import HeroVideo from "@/components/HeroVideo";
 import Reveal from "@/components/Reveal";
 import CardSlider from "@/components/CardSlider";
 
@@ -11,14 +12,10 @@ export default function Home() {
 
       {/* Hero */}
       <section className="hero">
-        <div className="hero__media">
-          <Image
-            src="/images/chef-plating.jpg"
-            alt="Chef plating a dish in low evening light at Omara"
-            fill
-            priority
-            sizes="100vw"
-            quality={60}
+        <div className="hero__media hero__media--video">
+          <HeroVideo
+            poster="/images/hero-video-wide.jpg"
+            alt="A table set for dinner in the Omara dining room"
           />
         </div>
         <div className="hero__content">
