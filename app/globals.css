@@ -1453,9 +1453,16 @@ body {
   object-fit: cover;
 }
 
+.hero-video {
+  position: absolute;
+  inset: 0;
+}
+
 .hero-video__poster {
-  z-index: 1;
-  background-image: url("/images/hero-video-wide.jpg");
+  /* Sits below the section's scrim, not above it, so overlaid copy stays
+     readable before the first frame arrives. */
+  z-index: 0;
+  background-image: var(--poster-wide);
   background-size: cover;
   background-position: center;
   transition: opacity 0.8s var(--ease);
@@ -1464,7 +1471,7 @@ body {
 /* Portrait crop for portrait viewports. Only the matching rule downloads. */
 @media (max-width: 860px) {
   .hero-video__poster {
-    background-image: url("/images/hero-video-tall.jpg");
+    background-image: var(--poster-tall);
   }
 }
 
@@ -1487,6 +1494,10 @@ body {
   .hero-video__el {
     transition: none;
   }
+}
+
+.feature__media--video {
+  background: var(--ink);
 }
 
 /* The footage is far brighter than the still it replaced — a flat 34% scrim

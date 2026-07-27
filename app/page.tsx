@@ -14,7 +14,7 @@ export default function Home() {
       <section className="hero">
         <div className="hero__media hero__media--video">
           <HeroVideo
-            poster="/images/hero-video-wide.jpg"
+            name="hero"
             alt="A table set for dinner in the Omara dining room"
           />
         </div>
@@ -27,13 +27,12 @@ export default function Home() {
 
       {/* Full-bleed feature with overlaid text */}
       <section className="feature" id="about">
-        <div className="feature__media">
-          <Image
-            src="/images/dining-room.jpg"
-            alt="A table set for dinner in the Omara dining room"
-            fill
-            sizes="100vw"
-            quality={60}
+        <div className="feature__media feature__media--video">
+          {/* Below the fold, so it is not fetched until the reader nears it. */}
+          <HeroVideo
+            name="feature"
+            alt="A pan finished over open flame in the Omara kitchen"
+            defer
           />
         </div>
         <Reveal className="feature__head">
