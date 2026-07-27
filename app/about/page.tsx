@@ -90,7 +90,7 @@ export default function AboutPage() {
         </Reveal>
         <Reveal className="contact__figure">
           <Image
-            src="/images/serving-hands.jpg"
+            src="/images/serving-wide.jpg"
             alt="A shared plate served at the Omara table"
             fill
             sizes="(max-width: 860px) 100vw, 55vw"
