@@ -151,6 +151,7 @@ export default function Home() {
             name="band"
             alt="A saxophonist playing in the Omara room after dark"
             defer
+            parallax
           />
         </div>
         <Reveal className="band__panel">

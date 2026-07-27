@@ -30,16 +30,20 @@ export default function HeroVideo({
   alt,
   /** Below-the-fold instances stay unfetched until the reader nears them. */
   defer = false,
+  /** Pans the footage under the pointer, and under a finger-drag on touch. */
+  parallax = false,
 }: {
   name: string;
   alt: string;
   defer?: boolean;
+  parallax?: boolean;
 }) {
   const [variant, setVariant] = useState<Variant | null>(null);
   const [stillOnly, setStillOnly] = useState(false);
   const [near, setNear] = useState(!defer);
   const [playing, setPlaying] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
+  const layer = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -102,10 +106,82 @@ export default function HeroVideo({
     return () => io.disconnect();
   }, [variant, near]);
 
+  /**
+   * Pointer-driven pan.
+   *
+   * The layer is scaled slightly larger than the frame so there is footage to
+   * move into. Position and damping live in a ref and are written straight to
+   * the element inside a rAF loop — routing per-frame values through React
+   * state would re-render the tree on every mouse move.
+   */
+  useEffect(() => {
+    if (!parallax) return;
+    const box = wrap.current;
+    const el = layer.current;
+    if (!box || !el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const MAX_X = 38;
+    const MAX_Y = 22;
+    const state = { x: 0, y: 0, tx: 0, ty: 0, dragging: false, px: 0, py: 0 };
+    let raf = 0;
+
+    const aim = (nx: number, ny: number) => {
+      state.tx = Math.max(-1, Math.min(1, nx)) * -MAX_X;
+      state.ty = Math.max(-1, Math.min(1, ny)) * -MAX_Y;
+    };
+
+    const onMove = (e: PointerEvent) => {
+      const r = box.getBoundingClientRect();
+      if (state.dragging) {
+        // Finger drag: accumulate, so touch users can pan without a cursor.
+        state.tx = Math.max(-MAX_X, Math.min(MAX_X, state.tx + (e.clientX - state.px) * 0.6));
+        state.ty = Math.max(-MAX_Y, Math.min(MAX_Y, state.ty + (e.clientY - state.py) * 0.6));
+        state.px = e.clientX;
+        state.py = e.clientY;
+      } else {
+        aim(((e.clientX - r.left) / r.width) * 2 - 1, ((e.clientY - r.top) / r.height) * 2 - 1);
+      }
+    };
+    const onDown = (e: PointerEvent) => {
+      state.dragging = true;
+      state.px = e.clientX;
+      state.py = e.clientY;
+    };
+    const onUp = () => {
+      state.dragging = false;
+    };
+    const onLeave = () => {
+      state.dragging = false;
+      state.tx = 0;
+      state.ty = 0;
+    };
+
+    const tick = () => {
+      state.x += (state.tx - state.x) * 0.08;
+      state.y += (state.ty - state.y) * 0.08;
+      el.style.transform = `translate3d(${state.x.toFixed(2)}px, ${state.y.toFixed(2)}px, 0) scale(1.14)`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    box.addEventListener("pointermove", onMove);
+    box.addEventListener("pointerdown", onDown);
+    window.addEventListener("pointerup", onUp);
+    box.addEventListener("pointerleave", onLeave);
+    return () => {
+      cancelAnimationFrame(raf);
+      box.removeEventListener("pointermove", onMove);
+      box.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
+      box.removeEventListener("pointerleave", onLeave);
+    };
+  }, [parallax, near, variant]);
+
   return (
     <div
       ref={wrap}
-      className="hero-video"
+      className={`hero-video ${parallax ? "hero-video--parallax" : ""}`}
       style={
         {
           "--poster-wide": `url("/images/${name}-wide.jpg")`,
@@ -113,6 +189,7 @@ export default function HeroVideo({
         } as React.CSSProperties
       }
     >
+      <div ref={layer} className="hero-video__layer">
       {/* Decorative, so a CSS background rather than <picture>: the preload
           scanner fetches an <img>'s src before evaluating <source> media
           rules, which had phones pulling the landscape still as well as the
@@ -143,6 +220,7 @@ export default function HeroVideo({
           <source src={`/video/${name}-${variant}.mp4`} type="video/mp4" />
         </video>
       )}
+      </div>
     </div>
   );
 }

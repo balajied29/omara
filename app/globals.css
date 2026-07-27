@@ -1529,3 +1529,33 @@ body {
 .band__media--video {
   background: var(--ink);
 }
+
+/* Parallax pan: the layer is scaled past the frame so there is footage to
+   move into, and it is the only thing that transforms — the section's scrim
+   and copy stay put. */
+.hero-video__layer {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-video--parallax {
+  /* Vertical scrolling must still work while a finger pans horizontally. */
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.hero-video--parallax:active {
+  cursor: grabbing;
+}
+
+.hero-video--parallax .hero-video__layer {
+  will-change: transform;
+  transform: scale(1.14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-video--parallax .hero-video__layer {
+    will-change: auto;
+    transform: none;
+  }
+}
